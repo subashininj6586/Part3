@@ -25,20 +25,18 @@ let persons = [
   },
 ]
 
-let count = persons.length
-console.log(count)
-let today = new Date()
 
-console.log(today)
-app.get('/', (request, response) => {
-  response.send('phone book have info of '+ count +' people' +'<br></br>'+ today)
-  
+app.get('/api/persons/:id', (request, response) => {
+  const id = Number(request.params.id)
+  console.log(id)
+  const person = persons.find(person => person.id === id)
+  console.log( person)
+  if ( person) {
+    response.json( person)
+  } else {
+    response.status(404).end()
+  }
 })
-
-app.get('/api/persons', (request, response) => {
-  response.json(persons)
-})
-
 const PORT = 3001
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
