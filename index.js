@@ -25,9 +25,14 @@ let persons = [
   },
 ]
 
+let count = persons.length
+console.log(count)
+let today = new Date()
 
+console.log(today)
 app.get('/', (request, response) => {
-  response.send('<h1>Hello World!</h1>')
+  response.send('phone book have info of '+ count +' people' +'<br></br>'+ today)
+  
 })
 
 app.get('/api/persons', (request, response) => {
